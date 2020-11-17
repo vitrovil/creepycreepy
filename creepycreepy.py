@@ -1,5 +1,4 @@
 
-
 from random import randint
 import pygame                                       
 from pygame.locals import *
@@ -11,8 +10,8 @@ AltY = 600
 X = 350
 Y = 500
 
-passoX = 1
-passoY = 1
+passoXe1 = 3.5
+passoYe1 = 3.5
 
 pygame.init()                                        
 tela = pygame.display.set_mode((LarX, AltY), 0, 32)     
@@ -21,11 +20,11 @@ pygame.display.set_caption('Creepy Creepy')
 fundo = pygame.image.load('bckgrd.jpg')
 personagem = pygame.image.load('mainchback.png')
 
-XQ = 300
-YQ = 300
 
-XQ2 = 100
-YQ2 = 100
+enemy1XQ = 350
+enemy1YQ = 100
+
+d = (X - enemy1XQ) ** 2 + (Y - enemy1YQ) ** 0.5
 
 
 enemy1 = pygame.image.load('enemy1.png')
@@ -37,23 +36,25 @@ fim = False
 while not fim:
   tela.blit(fundo, (0, 0))
   tela.blit(personagem, (X, Y))
-  pygame.draw.rect(tela, corRetangulo, ((XQ, YQ), tamRetangulo), espessuraRetangulo)
-  tela.blit(enemy1, (XQ2, YQ2))
+  
+  tela.blit(enemy1, (enemy1XQ, enemy1YQ))
+    
   pygame.display.update()
   
-  XQ = XQ + passoX
-  YQ2 = YQ2 + passoY
+  enemy1YQ = enemy1YQ + passoYe1
   
   
   pygame.time.delay(10)
                      
   Teclas = pygame.key.get_pressed()
-  
+
   
   if Teclas[K_UP]:
     Y = Y - 1.25
     personagem = pygame.image.load('mainchback.png')
     tela.blit(personagem, (X, Y))
+##  elif Y > 550:
+##    Y = Y - 30
     
   if Teclas[K_DOWN]:
     Y = Y + 1.25
@@ -70,6 +71,9 @@ while not fim:
     personagem = pygame.image.load('mainchright.png')
     tela.blit(personagem, (X, Y))
 
+  #if Teclas[K_SPACE]:
+
+  
 
   for event in pygame.event.get():                   
     if event.type == QUIT:                           
