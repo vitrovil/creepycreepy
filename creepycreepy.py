@@ -48,7 +48,9 @@ while not fim:
                      
   Teclas = pygame.key.get_pressed()
 
-  
+  if X == enemy1XQ and Y == enemy1YQ: 
+    print("aaa")
+    
   if Teclas[K_UP]:
     Y = Y - 1.25
     personagem = pygame.image.load('mainchback.png')
@@ -71,7 +73,11 @@ while not fim:
     personagem = pygame.image.load('mainchright.png')
     tela.blit(personagem, (X, Y))
 
-  #if Teclas[K_SPACE]:
+  coordRetangulo = (100,100)
+  tamRetangulo = (90,90)
+  
+  if Teclas[K_SPACE]:
+     pygame.draw.rect(tela, corRetangulo, (coordRetangulo, tamRetangulo), espessuraRetangulo)
 
   
 
